@@ -6,7 +6,7 @@
       "workDir": ".",
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/vertex-examples.git",
-      "HEAD": "refs/heads/master",
+      "HEAD": "refs/heads/develop",
       "version": "ROOT_REPO_REF"
     },
     {
@@ -15,7 +15,7 @@
       "packageManager": "npm",
       "remote.origin.url": "https://github.com/nomilous/vertex.git",
       "HEAD": "refs/heads/develop",
-      "version": "6e7c579874bbb47e0a90ddd67d5ce0f86d0f286f"
+      "version": "b57de913e3b80822d7e3ce50fab2b47f863fedb2"
     }
   ]
 }

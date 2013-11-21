@@ -16,17 +16,42 @@ routes =
         function: (opts, callback) -> 
 
             console.log opts
-            callback null, val: 'ue'
+            callback null, '1': subrecord: 
+                'xx': da: 'ta1'
+                'yy': da: 'ta2'
+
+
+        'missing': (opts, callback) -> 
+
+            callback null, 
+
+                body: ''
+                statusCode: 404
+
+
+        maybe: 
+
+            client: 
+
+                js: (opts, callback) -> 
+
+                    callback null, 
+
+                        'content-type': 'text/javascript'  # dashes are so annoying
+                        body: 
+
+                            clear: -> document.innerHtml = ''
 
 
 
 
 #
-# enable /module/function route
+# enable routes
 #
 
 routes.module.function.$api = {} # optional: 'per function config'
-
+routes.module.missing.$api = {}
+routes.module.maybe.client.js.$api = cache: true   # ,  expire: ...
 
 
 require('vertex')

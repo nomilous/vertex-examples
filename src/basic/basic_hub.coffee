@@ -10,7 +10,7 @@ routes =
         # curl :3000/module/function/1/subrecord/xx
         # curl -XPOST -H 'Content-Type: application/json' :3000/module/function --data '{"key":"value"}'
         # curl -XPUT  -H 'Content-Type: application/json' :3000/module/function/1 --data '{"key":"value"}'
-        # curl -XDELETE :3000/module/function/
+        # curl -XDELETE :3000/module/function/1
         # 
 
         function: (opts, callback) -> 

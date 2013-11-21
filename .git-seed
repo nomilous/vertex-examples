@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "repos": [
+    {
+      "root": true,
+      "workDir": ".",
+      "packageManager": "npm",
+      "remote.origin.url": "git@github.com:nomilous/vertex-examples.git",
+      "HEAD": "refs/heads/master",
+      "version": "ROOT_REPO_REF"
+    },
+    {
+      "root": false,
+      "workDir": "./node_modules/vertex",
+      "packageManager": "npm",
+      "remote.origin.url": "https://github.com/nomilous/vertex.git",
+      "HEAD": "refs/heads/develop",
+      "version": "6e7c579874bbb47e0a90ddd67d5ce0f86d0f286f"
+    }
+  ]
+}

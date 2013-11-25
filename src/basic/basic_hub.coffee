@@ -12,6 +12,10 @@ routes =
 
         view: (opts, callback) -> 
 
+            #
+            # http://localhost:3000/module/view
+            #
+
             callback null,
                 headers: 'Content-Type': 'text/html'   # <-------------- too much work
                 body: """

@@ -55,6 +55,8 @@ describe 'Describe Vertex', ->
             
             routes = test: (opts, callback) => 
 
+                console.log opts
+
                 #
                 # use JSON's stringify filter
                 # to "deep copy" a portion of the test stack (excluding circular refs)
@@ -72,18 +74,18 @@ describe 'Describe Vertex', ->
                 callback null, result
 
                 #
-                # stop on first hit
+                # stop on first hit 
                 #
 
                 done()
 
 
-            routes.test.$api = {}
+            routes.test.$www = {}
 
 
             require('vertex')
 
-                api: 
+                www: 
                     listen: port: 3002
                     root: routes
 

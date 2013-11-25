@@ -1,7 +1,42 @@
 
 routes = 
 
+    # 
+    # login:    new require('some_node_module').Login config: ''
+    # register: new require('some_node_module').Register config: ''
+    # 
+    # accounts:  new require('some_node_module_with_both_the_above').Accounts config: ''
+    #
+
     module: 
+
+        view: (opts, callback) -> 
+
+            callback null,
+                headers: 'Content-Type': 'text/html'   # <-------------- too much work
+                body: """
+
+                    <script src="/module/controller"></script>
+
+                """
+
+                # render:
+                #     template: ... (filetype informs renderer to use eg. jade)
+                #     data: ... (serverside data injection into templates still usefull?)
+
+
+        controller: (opts, callback) -> 
+
+            callback null,
+                headers: 'Content-Type': 'text/javascript'
+                body: """
+
+                    alert('script!');
+
+                """
+                # body: -> alert 'script!'
+
+
 
         # help: {}
 
@@ -29,30 +64,18 @@ routes =
                 statusCode: 404
 
 
-        maybe: 
-
-            client: 
-
-                js: (opts, callback) -> 
-
-                    callback null, 
-
-                        'content-type': 'text/javascript'  # dashes are so annoying
-                        body: 
-
-                            clear: -> document.innerHtml = ''
-
-
-
+       
 
 #
 # enable routes
 #
 
+routes.module.view.$www = cache: true  # , 'content-type': 'text/html', expire: ...
+
+routes.module.controller.$www = cache: true
+
 routes.module.function.$www = {} # optional: 'per function config'
 routes.module.missing.$www = {}
-routes.module.maybe.client.js.$www = cache: true   # ,  expire: ...
-
 
 require('vertex')
     

@@ -49,9 +49,9 @@ routes =
 # enable routes
 #
 
-routes.module.function.$api = {} # optional: 'per function config'
-routes.module.missing.$api = {}
-routes.module.maybe.client.js.$api = cache: true   # ,  expire: ...
+routes.module.function.$www = {} # optional: 'per function config'
+routes.module.missing.$www = {}
+routes.module.maybe.client.js.$www = cache: true   # ,  expire: ...
 
 
 require('vertex')

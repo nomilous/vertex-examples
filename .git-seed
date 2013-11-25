@@ -15,7 +15,15 @@
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/vertex.git",
       "HEAD": "refs/heads/develop",
-      "version": "35fdf139a25fc29dc4cfaa6c398eb64357b297ea"
+      "version": "f2a2c2d043195e5cc729384b7906d932eabfbff1"
+    },
+    {
+      "root": false,
+      "workDir": "./node_modules/vertex/node_modules/ipso",
+      "packageManager": "npm",
+      "remote.origin.url": "git@github.com:nomilous/ipso.git",
+      "HEAD": "refs/heads/develop",
+      "version": "bb7ce980bd85991bd354bd95631c5e9c8e48e2d7"
     }
   ]
 }

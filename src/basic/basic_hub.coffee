@@ -21,7 +21,7 @@ routes =
                 'yy': da: 'ta2'
 
 
-        'missing': (opts, callback) -> 
+        missing: (opts, callback) -> 
 
             callback null, 
 
@@ -61,7 +61,7 @@ require('vertex')
         port: 3001
 
     
-    api: 
+    www:
 
         listen: port: 3000
         allowRoot: true # false

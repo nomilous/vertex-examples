@@ -38,9 +38,21 @@ routes =
                 headers: 'Content-Type': 'text/javascript'
                 body: "(#{
 
+                    #
+                    # require('vertex').Client.toString()
+                    #                  .BrowserClient.toString()  # avoid logger /? other possible serverside specifics
+                    # 
+
                     require('./browser_client').toString()
 
                 }).call(self, '#{port}', '#{secret}');"
+
+                        #
+                        # - quite like this approach
+                        # - just missing the capacity to 'require' in the client script
+                        # - can build security in via the args to .call as templated 
+                        #   accorging to a preceding web ui login
+                        # 
 
 
         # help: {}
@@ -87,6 +99,7 @@ routes.module.missing.$www = {}
 require('vertex')
     
     secret: secret
+    # secret: 'wrong'
     listen: 
         port: port
 

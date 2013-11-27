@@ -2,10 +2,16 @@ module.exports = (port, secret) ->
 
     #
     # assumes eio client loaded first
-    # todo: component? 
-    #
+    # todo: ? wss://
+    # 
 
     socket = eio "ws://localhost:#{ port }"
+
+    #
+    # todo: component? / requirejs?
+    #
+
+    # socket = require('engine.io') "ws://localhost:#{ port }"
 
 
 
@@ -15,7 +21,7 @@ module.exports = (port, secret) ->
 
             event: 'handshake'
             data: 
-                title:   'Client'
+                title:   'Browser Client'
                 uuid:    'UUID'
                 context: {}
                 secret:  secret
@@ -24,9 +30,11 @@ module.exports = (port, secret) ->
 
     socket.onmessage = (msg) -> 
 
-            obj = JSON.parse msg.data.substr 1 
-            console.log obj
+        obj = JSON.parse msg.data.substr 1 
+        console.log obj
 
     socket.onclose = -> 
+
+        console.log 'close'
     
 

@@ -57,6 +57,7 @@ module.exports = (port, secret) ->
                 uuid:    'UUID'
                 context: {}
                 secret:  secret
+                # secret:  'wrong'
 
         }"
 

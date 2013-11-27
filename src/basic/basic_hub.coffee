@@ -1,3 +1,5 @@
+port   = 3001
+secret = 'secret'
 
 routes = 
 
@@ -20,6 +22,7 @@ routes =
                 headers: 'Content-Type': 'text/html'   # <-------------- too much work
                 body: """
 
+                    <script src="/engine.io.js"></script>
                     <script src="/module/controller"></script>
 
                 """
@@ -33,13 +36,11 @@ routes =
 
             callback null,
                 headers: 'Content-Type': 'text/javascript'
-                body: """
+                body: "(#{
 
-                    alert('script!');
+                    require('./browser_client').toString()
 
-                """
-                # body: -> alert 'script!'
-
+                }).call(self, '#{port}', '#{secret}');"
 
 
         # help: {}
@@ -75,17 +76,19 @@ routes =
 #
 
 routes.module.view.$www = cache: true  # , 'content-type': 'text/html', expire: ...
-
 routes.module.controller.$www = cache: true
 
-routes.module.function.$www = {} # optional: 'per function config'
+routes.module.function.$www = roles: ['admin']
 routes.module.missing.$www = {}
+
+
+
 
 require('vertex')
     
-    secret: 'π'
+    secret: secret
     listen: 
-        port: 3001
+        port: port
 
     
     www:
@@ -93,7 +96,6 @@ require('vertex')
         listen: port: 3000
         allowRoot: true # false
         root: routes
-
 
     log: 
 

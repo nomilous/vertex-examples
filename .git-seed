@@ -15,7 +15,7 @@
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/vertex.git",
       "HEAD": "refs/heads/develop",
-      "version": "d379f502ad3bcb3bc1eed8b3f201525ba4fec422"
+      "version": "4fb0ce2d62578bee0b976fcafea8a217c0890c1e"
     },
     {
       "root": false,
@@ -31,7 +31,7 @@
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/vertex-client.git",
       "HEAD": "refs/heads/develop",
-      "version": "77fb4d71ae45b2af5700f64bed51f04b203210fb"
+      "version": "fb6f15939770914d91cc5cfb4b4d8ff4be0feaad"
     }
   ]
 }

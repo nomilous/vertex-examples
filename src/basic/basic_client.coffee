@@ -38,3 +38,7 @@ client = Client.create
 
 client.connect()
 
+
+client.socket.on 'message', (payload) -> 
+
+    console.log payload

@@ -44,3 +44,8 @@ module.exports = (port, secret) ->
                     x: e.x
                     y: e.y
 
+
+
+    client.socket.on 'message', (payload) -> 
+
+        console.log payload

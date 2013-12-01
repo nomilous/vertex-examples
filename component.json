@@ -1,0 +1,20 @@
+{
+  "name": "vertex-examples",
+  "repo": "nomilous/vertex-examples",
+  "description": "Vertex examples",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "nomilous/vertex-client": "develop"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "vertex-examples.css"
+  ],
+  "remotes": []
+}

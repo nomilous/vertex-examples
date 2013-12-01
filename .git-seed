@@ -23,7 +23,7 @@
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/vertex-client.git",
       "HEAD": "refs/heads/develop",
-      "version": "fb6f15939770914d91cc5cfb4b4d8ff4be0feaad"
+      "version": "8979a6e603c4d016eab09630265025ba1f290cf5"
     }
   ]
 }

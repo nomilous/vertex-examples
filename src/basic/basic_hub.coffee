@@ -13,6 +13,14 @@ routes =
     # accounts:  new require('some_node_module_with_both_the_above').Accounts config: ''
     #
 
+
+    #
+    # publish the compponent build file
+    # ---------------------------------
+    # 
+    # * assumes `component install` and `component build` ( up-to-date )
+    #
+
     'build.js': (opts, callback) -> 
 
         #
@@ -41,9 +49,9 @@ routes =
             }).call(self, '#{port}', '#{secret}');"
 
                             #
-                            # - quite like this approach
-                            # - just missing the capacity to 'require' in the client script
-                            # - can build security in via the args to .call as templated 
+                            # * quite like this approach
+                            # * just missing the capacity to 'require' in the client script
+                            # * can build security in via the args to .call as templated 
                             #   accorging to a preceding web ui login
                             #  
 

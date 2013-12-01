@@ -1,4 +1,4 @@
-{Client} = require 'vertex'
+Client = require 'vertex-client'
 
 client = Client.create
     

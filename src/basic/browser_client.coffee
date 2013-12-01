@@ -14,6 +14,8 @@ module.exports = (port, secret) ->
 
     client = require('vertex-client').create
 
+        secret: 'secret'
+
         connect: 
 
             uri: "ws://localhost:#{port}"
@@ -21,4 +23,15 @@ module.exports = (port, secret) ->
 
 
     client.connect()
+
+
+    setTimeout (->
+
+        #
+        # pending event emitter / or callback on connect (undecided)
+        #
+
+        console.log client.status
+
+    ), 1000
 

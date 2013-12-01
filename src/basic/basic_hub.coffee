@@ -15,8 +15,8 @@ routes =
 
 
     #
-    # publish the compponent build file
-    # ---------------------------------
+    # publish the component build file
+    # --------------------------------
     # 
     # * assumes `component install` and `component build` ( up-to-date )
     #
@@ -32,6 +32,14 @@ routes =
             
             headers: 'Content-Type': 'text/javascript'
             body: readFileSync "#{__dirname}/../../build/build.js"
+
+
+    'smoothie.js': (opts, callback) -> 
+
+        callback null,
+            
+            headers: 'Content-Type': 'text/javascript'
+            body: readFileSync "#{__dirname}/../../smoothie.js"
 
 
 
@@ -50,7 +58,6 @@ routes =
 
                             #
                             # * quite like this approach
-                            # * just missing the capacity to 'require' in the client script
                             # * can build security in via the args to .call as templated 
                             #   accorging to a preceding web ui login
                             #  
@@ -63,38 +70,42 @@ routes =
             headers: 'Content-Type': 'text/html'
             body: """
 
+                <canvas id="mycanvas" width="800" height="200"></canvas>
+
+
+                <script src="/smoothie.js"></script>
                 <script src="/build.js"></script>
                 <script src="/controller"></script>
 
 
             """
 
-    module: 
+    # module: 
 
-        # help: {}
+    #     # help: {}
 
-        #
-        # curl :3000/module/function?key=value
-        # curl :3000/module/function/1/subrecord/xx
-        # curl -XPOST -H 'Content-Type: application/json' :3000/module/function --data '{"key":"value"}'
-        # curl -XPUT  -H 'Content-Type: application/json' :3000/module/function/1 --data '{"key":"value"}'
-        # curl -XDELETE :3000/module/function/1
-        # 
+    #     #
+    #     # curl :3000/module/function?key=value
+    #     # curl :3000/module/function/1/subrecord/xx
+    #     # curl -XPOST -H 'Content-Type: application/json' :3000/module/function --data '{"key":"value"}'
+    #     # curl -XPUT  -H 'Content-Type: application/json' :3000/module/function/1 --data '{"key":"value"}'
+    #     # curl -XDELETE :3000/module/function/1
+    #     # 
 
-        function: (opts, callback) -> 
+    #     function: (opts, callback) -> 
 
-            console.log opts
-            callback null, '1': subrecord: 
-                'xx': da: 'ta1'
-                'yy': da: 'ta2'
+    #         console.log opts
+    #         callback null, '1': subrecord: 
+    #             'xx': da: 'ta1'
+    #             'yy': da: 'ta2'
 
 
-        missing: (opts, callback) -> 
+    #     missing: (opts, callback) -> 
 
-            callback null, 
+    #         callback null, 
 
-                body: ''
-                statusCode: 404
+    #             body: ''
+    #             statusCode: 404
 
 
        
@@ -104,14 +115,15 @@ routes =
 #
 
 routes['build.js'].$www = {}
+routes['smoothie.js'].$www = {}
 routes.controller.$www = {}
 routes.view.$www = {}
 
 # routes.module.view.$www = cache: true  # , 'content-type': 'text/html', expire: ...
 # routes.module.controller.$www = cache: true
 
-routes.module.function.$www = roles: ['admin']
-routes.module.missing.$www = {}
+# routes.module.function.$www = roles: ['admin']
+# routes.module.missing.$www = {}
 
 
 

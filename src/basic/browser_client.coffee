@@ -25,13 +25,22 @@ module.exports = (port, secret) ->
     client.connect()
 
 
-    setTimeout (->
+    #
+    # pending proper interface to the socket
+    # ======================================
+    #
+    # broadcast mouse position to peers
+    #
 
-        #
-        # pending event emitter / or callback on connect (undecided)
-        #
+    document.onmousemove = (e) -> 
 
-        console.log client.status
+        client.socket.send JSON.stringify
 
-    ), 1000
+            event: 'broadcast'
+            data: 
+
+                mouse:
+
+                    x: e.x
+                    y: e.y
 

@@ -20,7 +20,7 @@ client = Client.create
     # * client will be denied unless this matches the hubside secret
     #
 
-    secret: 'π'
+    secret: 'secret'
 
     #
     # ### connect

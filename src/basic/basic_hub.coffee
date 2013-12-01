@@ -1,7 +1,10 @@
 port   = 3001
 secret = 'secret'
 
+{readFileSync} = require 'fs'
+
 routes = 
+
 
     # 
     # login:    new require('some_node_module').Login config: ''
@@ -10,50 +13,55 @@ routes =
     # accounts:  new require('some_node_module_with_both_the_above').Accounts config: ''
     #
 
+    'build.js': (opts, callback) -> 
+
+        #
+        # TODO: include component endpoints into vertex hub @ /build/*, 
+        #       always present if there is a component.json file
+        #
+
+        callback null,
+            
+            headers: 'Content-Type': 'text/javascript'
+            body: readFileSync "#{__dirname}/../../build/build.js"
+
+
+
+    controller: (opts, callback) -> 
+
+        callback null,
+
+            headers: 'Content-Type': 'text/javascript'
+            body: "(#{
+
+
+                require('./browser_client').toString()
+
+
+            }).call(self, '#{port}', '#{secret}');"
+
+                            #
+                            # - quite like this approach
+                            # - just missing the capacity to 'require' in the client script
+                            # - can build security in via the args to .call as templated 
+                            #   accorging to a preceding web ui login
+                            #  
+
+
+    view: (opts, callback) ->
+
+        callback null,
+
+            headers: 'Content-Type': 'text/html'
+            body: """
+
+                <script src="/build.js"></script>
+                <script src="/controller"></script>
+
+
+            """
+
     module: 
-
-        view: (opts, callback) -> 
-
-            #
-            # http://localhost:3000/module/view
-            #
-
-            callback null,
-                headers: 'Content-Type': 'text/html'   # <-------------- too much work
-                body: """
-
-                    <script src="/engine.io.js"></script>
-                    <script src="/module/controller"></script>
-
-                """
-
-                # render:
-                #     template: ... (filetype informs renderer to use eg. jade)
-                #     data: ... (serverside data injection into templates still usefull?)
-
-
-        controller: (opts, callback) -> 
-
-            callback null,
-                headers: 'Content-Type': 'text/javascript'
-                body: "(#{
-
-                    #
-                    # require('vertex').Client.toString()
-                    #                  .BrowserClient.toString()  # avoid logger /? other possible serverside specifics
-                    # 
-
-                    require('./browser_client').toString()
-
-                }).call(self, '#{port}', '#{secret}');"
-
-                        #
-                        # - quite like this approach
-                        # - just missing the capacity to 'require' in the client script
-                        # - can build security in via the args to .call as templated 
-                        #   accorging to a preceding web ui login
-                        # 
-
 
         # help: {}
 
@@ -87,8 +95,12 @@ routes =
 # enable routes
 #
 
-routes.module.view.$www = cache: true  # , 'content-type': 'text/html', expire: ...
-routes.module.controller.$www = cache: true
+routes['build.js'].$www = {}
+routes.controller.$www = {}
+routes.view.$www = {}
+
+# routes.module.view.$www = cache: true  # , 'content-type': 'text/html', expire: ...
+# routes.module.controller.$www = cache: true
 
 routes.module.function.$www = roles: ['admin']
 routes.module.missing.$www = {}

@@ -24,6 +24,14 @@
       "remote.origin.url": "git@github.com:nomilous/ipso.git",
       "HEAD": "refs/heads/develop",
       "version": "bb7ce980bd85991bd354bd95631c5e9c8e48e2d7"
+    },
+    {
+      "root": false,
+      "workDir": "./node_modules/vertex-client",
+      "packageManager": "npm",
+      "remote.origin.url": "git@github.com:nomilous/vertex-client.git",
+      "HEAD": "refs/heads/develop",
+      "version": "e33f150c93b61b785b3aceedae3211da5f5b8554"
     }
   ]
 }

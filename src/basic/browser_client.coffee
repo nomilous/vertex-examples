@@ -17,7 +17,7 @@ module.exports = (port, secret) ->
         connect: 
 
             uri: "ws://localhost:#{port}"
-            interval: 2000
+            # interval: 2000
 
 
     client.connect()

@@ -12,6 +12,10 @@ logs
 results
 
 npm-debug.log
+
 node_modules
+components
+build
+
 .env*
 !.env.test

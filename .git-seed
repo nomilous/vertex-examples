@@ -31,7 +31,7 @@
       "packageManager": "npm",
       "remote.origin.url": "git@github.com:nomilous/does.git",
       "HEAD": "refs/heads/develop",
-      "version": "0c834ef045eb5852feea5d621cf69dde497792aa"
+      "version": "58ccb05afc075df45c0888080ce0d755743001ca"
     },
     {
       "root": false,

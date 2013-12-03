@@ -1,3 +1,4 @@
+debug  = require('debug') 'vertex-examples:basic_client'
 Client = require 'vertex-client'
 
 client = Client.create
@@ -41,4 +42,4 @@ client.connect()
 
 client.socket.on 'message', (payload) -> 
 
-    console.log payload
+    debug 'message', payload

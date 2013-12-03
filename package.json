@@ -9,11 +9,13 @@
       "email": "nomilous@gmail.com"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+    "debug": "~0.7.4"
+  },
   "devDependencies": {
     "vertex": "0.0.1",
     "vertex-client": "0.0.1",
-    "ipso": "0.0.15"
+    "ipso": "0.0.16"
   },
   "repository": "git@github.com:nomilous/vertex-examples.git"
 }

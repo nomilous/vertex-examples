@@ -70,7 +70,7 @@ routes =
             headers: 'Content-Type': 'text/html'
             body: """
 
-                <canvas id="mycanvas" width="800" height="200"></canvas>
+                <canvas id="mycanvas" width="400" height="100"></canvas>
 
 
                 <script src="/smoothie.js"></script>

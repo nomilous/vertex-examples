@@ -6,13 +6,21 @@
 #
 
 
-module.exports = (port, secret) ->
+module.exports = (port, secret, name) ->
 
     #
     # * /build.js script loaded first in html (see routes.view in basic_hub)
     # 
 
+
+    debug = require('debug') 'vertex-example'
+    debug 'name %s', name
+
     client = require('vertex-client').create
+
+        context: 
+
+            name: name
 
         secret: 'secret'
 
@@ -20,6 +28,9 @@ module.exports = (port, secret) ->
 
             uri: "ws://localhost:#{port}"
             # interval: 2000
+
+
+        
 
 
     client.connect()

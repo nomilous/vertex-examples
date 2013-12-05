@@ -45,6 +45,10 @@ routes =
 
     controller: (opts, callback) -> 
 
+        #
+        # a makeshift js template (tad sneaky)
+        #
+
         callback null,
 
             headers: 'Content-Type': 'text/javascript'
@@ -54,7 +58,10 @@ routes =
                 require('./browser_client').toString()
 
 
-            }).call(self, '#{port}', '#{secret}');"
+            }).call(self, '#{port}', '#{secret}', '#{opts.query.name}');"
+                                                            #
+                                                            # carry name through from url query
+                                                            #
 
                             #
                             # * quite like this approach
@@ -64,6 +71,10 @@ routes =
 
 
     view: (opts, callback) ->
+
+        console.log OPTS: opts
+
+        name = opts.query.name || 'Untitled'
 
         callback null,
 
@@ -75,7 +86,9 @@ routes =
 
                 <script src="/smoothie.js"></script>
                 <script src="/build.js"></script>
-                <script src="/controller"></script>
+                <script src="/controller?name=#{name}"></script>
+
+                                <!-- sneak name into script view url query -->
 
 
             """

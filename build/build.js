@@ -3507,7 +3507,7 @@ module.exports.create = function(config) {
         if (typeof local[message.event] === 'function') {
           return local[message.event](message);
         }
-        return debug('missing event handler for %s', [message.event]);
+        return debug('missing event handler for %s', [message.event || 'undefined event']);
       });
     },
     deny: function() {
@@ -3521,7 +3521,8 @@ module.exports.create = function(config) {
       return debug('accepted');
     },
     peer: function(message) {
-      debug('peer event %s from %s', message.action, message.title);
+      var list, uuid, _results;
+      debug('peer event %s from %s', message.action, message.uuid);
       if (message.action === 'depart') {
         delete local.peers[message.uuid];
       } else if (message.action === 'join') {
@@ -3534,6 +3535,13 @@ module.exports.create = function(config) {
           title: message.title,
           context: message.context
         };
+      } else if (message.action === 'list') {
+        list = message.list;
+        _results = [];
+        for (uuid in list) {
+          _results.push(local.peers[uuid] = list[uuid]);
+        }
+        return _results;
       }
     },
     connecting: void 0,

@@ -42,4 +42,10 @@ client.connect()
 
 client.socket.on 'message', (payload) -> 
 
-    debug 'message', payload
+    #
+    # temporary pending EventEmitter
+    #
+
+    message = JSON.parse payload
+
+    if message.event is 'peer' then console.log client.peers

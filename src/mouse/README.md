@@ -24,6 +24,7 @@ http://localhost:3000/mouse/view?name=ClientOne
 #
 
 
-DEBUG=vertex* NAME=ClientZero node-dev src/mice/mouse_client.coffee
+DEBUG=vertex* NAME=ClientZero node-dev src/mouse/mouse_client.coffee
+
 
 ```

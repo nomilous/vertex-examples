@@ -1,10 +1,12 @@
 #
-# node client
+# node-side client 
 #
 
 
 debug  = require('debug') 'vertex-examples:basic_client'
 Client = require 'vertex-client'
+
+uuid   = process.env.NAME || 'ClientZero'  # 'e2abc7fe-f602-4112-9a14-010018253cbd'
 
 client = Client.create
     
@@ -18,11 +20,10 @@ client = Client.create
     # * need not be a fullblown uuid
     #
 
-    # uuid:  'e2abc7fe-f602-4112-9a14-010018253cbd'
-    uuid: process.env.NAME || 'e2abc7fe-f602-4112-9a14-010018253cbd'
+    uuid: uuid
 
     context: 
-        name: process.env.NAME || 'NodeClient'
+        name: uuid
 
     #
     # ### secret
@@ -61,3 +62,30 @@ client.socket.on 'message', (payload) ->
     else
 
         console.log payload
+
+
+x = 0
+y = 0
+position = x: 300, y: 200
+radius = x: 200, y: 100
+
+
+infinity = -> 
+
+    #
+    # fake the mousemove traces infinity symbol
+    #
+
+    client.socket.send JSON.stringify
+
+        event: 'broadcast'
+        data:
+
+            event: 'mousemove'
+            uuid: uuid
+            
+            x: position.x + (radius.x * Math.cos x++ / 20)
+            y: position.y + (radius.y * Math.sin y++ / 10)
+
+
+setInterval infinity, 10

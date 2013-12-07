@@ -95,7 +95,8 @@ module.exports = (port, secret, name) ->
 
                     when 'join', 'resume'
 
-                        peer = insert uuid unless peer = dom( selector )
+                        peer = insert uuid unless peer = container.find( selector ).els[0]
+
                         dom( peer ).css
 
                             visibility: 'visible'
@@ -109,4 +110,10 @@ module.exports = (port, secret, name) ->
                             visibility: 'hidden'
                             position: 'absolute'
 
+            when 'mousemove'
+
+                dom( selector ).css
+
+                    top: "#{data.y}px"
+                    left: "#{data.x}px"
 

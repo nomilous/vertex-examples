@@ -24,6 +24,5 @@ node-dev src/mice/mouse_hub.coffee | bunyan
 #
 
 
-DEBUG=vertex* node-dev src/mice/mouse_client.coffee
-
+DEBUG=vertex* NAME=ClientZero node-dev src/mice/mouse_client.coffee
 

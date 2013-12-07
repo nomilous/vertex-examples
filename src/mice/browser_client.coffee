@@ -39,6 +39,11 @@ module.exports = (port, secret, name) ->
     client.connect()
 
 
+
+    dom = require 'dom'
+    container = dom '.container'
+
+
     #
     # pending proper interface to the socket
     # ======================================
@@ -58,7 +63,50 @@ module.exports = (port, secret, name) ->
                 y: e.y
 
 
+    insert = (uuid) -> 
+
+        container.append("<div>#{uuid}</div>")
+        .addClass('peer')
+        .addClass(uuid)
+        .css 
+            visibility: 'visible'
+            position: 'absolute'
+
 
     client.socket.on 'message', (payload) -> 
 
-        debug payload
+        data     = JSON.parse payload
+        event    = data.event
+        uuid     = data.uuid
+        selector = ".peer.#{uuid}"
+
+        switch event
+
+            when 'peer'
+
+                action = data.action
+                list   = data.list
+
+                switch action
+
+                    when 'list'
+
+                        insert uuid for uuid of list
+
+                    when 'join', 'resume'
+
+                        peer = insert uuid unless peer = dom( selector )
+                        dom( peer ).css
+
+                            visibility: 'visible'
+                            position: 'absolute'
+
+
+                    when 'depart'
+
+                        dom( selector ).css
+
+                            visibility: 'hidden'
+                            position: 'absolute'
+
+

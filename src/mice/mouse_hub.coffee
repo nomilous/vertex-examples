@@ -72,7 +72,7 @@ routes =
             headers: 'Content-Type': 'text/html'
             body: """
 
-                <canvas id="mycanvas" width="400" height="100"></canvas>
+                <div class='container'></div>
 
 
                 <script src="/build.js"></script>

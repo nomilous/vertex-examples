@@ -16,6 +16,9 @@ client = Client.create
     # uuid:  'e2abc7fe-f602-4112-9a14-010018253cbd'
     uuid: process.env.NAME || 'e2abc7fe-f602-4112-9a14-010018253cbd'
 
+    context: 
+        name: process.env.NAME || 'NodeClient'
+
     #
     # ### secret
     # 

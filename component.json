@@ -6,7 +6,8 @@
   "keywords": [],
   "dependencies": {
     "visionmedia/debug": "*",
-    "nomilous/vertex-client": "develop"
+    "nomilous/vertex-client": "develop",
+    "component/dom": "*"
   },
   "development": {},
   "license": "MIT",

@@ -53,6 +53,6 @@ client.socket.on 'message', (payload) ->
     message = JSON.parse payload
 
     if message.event is 'peer' then console.log client.peers
+    else
 
-
-    console.log payload
+        console.log payload

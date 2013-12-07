@@ -22,10 +22,17 @@ client = (port, secret, name) ->
 
 
     dom = require 'dom'
-    container = dom '.container'
+    
+
+    container = dom('body').append('<div></div>')
+
+    .css
+
+        width: '100%'
+        height: '100%'
 
 
-    document.onmousemove = (e) -> 
+    .on 'mousemove', (e) -> 
 
         client.socket.send JSON.stringify
 
@@ -135,14 +142,12 @@ module.exports = (port, secret) ->
                 headers: 'Content-Type': 'text/html'
                 body: """
 
-                    <div class='container'></div>
-
-
+                    <body>
+                    
                     <script src="/build.js"></script>
                     <script src="./controller?name=#{name}"></script>
-
                                     <!-- sneak name into script view url query -->
-
+                    </body>
 
                 """
 

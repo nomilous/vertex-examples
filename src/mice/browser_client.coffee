@@ -100,7 +100,6 @@ module.exports = (port, secret, name) ->
                         dom( peer ).css
 
                             visibility: 'visible'
-                            position: 'absolute'
 
 
                     when 'depart'
@@ -108,7 +107,6 @@ module.exports = (port, secret, name) ->
                         dom( selector ).css
 
                             visibility: 'hidden'
-                            position: 'absolute'
 
             when 'mousemove'
 

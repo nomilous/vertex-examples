@@ -34,15 +34,6 @@ routes =
             body: readFileSync "#{__dirname}/../../build/build.js"
 
 
-    'smoothie.js': (opts, callback) -> 
-
-        callback null,
-            
-            headers: 'Content-Type': 'text/javascript'
-            body: readFileSync "#{__dirname}/../../smoothie.js"
-
-
-
     controller: (opts, callback) -> 
 
         #
@@ -84,7 +75,6 @@ routes =
                 <canvas id="mycanvas" width="400" height="100"></canvas>
 
 
-                <script src="/smoothie.js"></script>
                 <script src="/build.js"></script>
                 <script src="/controller?name=#{name}"></script>
 
@@ -128,7 +118,6 @@ routes =
 #
 
 routes['build.js'].$www = {}
-routes['smoothie.js'].$www = {}
 routes.controller.$www = {}
 routes.view.$www = {}
 

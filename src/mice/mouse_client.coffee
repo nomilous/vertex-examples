@@ -13,7 +13,8 @@ client = Client.create
     # * need not be a fullblown uuid
     #
 
-    uuid:  'e2abc7fe-f602-4112-9a14-010018253cbd'
+    # uuid:  'e2abc7fe-f602-4112-9a14-010018253cbd'
+    uuid: process.env.NAME || 'e2abc7fe-f602-4112-9a14-010018253cbd'
 
     #
     # ### secret
@@ -49,3 +50,6 @@ client.socket.on 'message', (payload) ->
     message = JSON.parse payload
 
     if message.event is 'peer' then console.log client.peers
+
+
+    console.log payload

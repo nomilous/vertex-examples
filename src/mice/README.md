@@ -1,3 +1,4 @@
+```
 
 #
 # start vertex hub 
@@ -12,8 +13,7 @@ node-dev src/mice/mouse_hub.coffee | bunyan
 # browserConsole: require('debug').enable('vertex*')
 # 
 
-[http://localhost:3000/mouse/view?name=ClientOne](http://localhost:3000/mouse/view?name=ClientOne)
-
+http://localhost:3000/mouse/view?name=ClientOne
 
 
 #
@@ -26,3 +26,4 @@ node-dev src/mice/mouse_hub.coffee | bunyan
 
 DEBUG=vertex* NAME=ClientZero node-dev src/mice/mouse_client.coffee
 
+```

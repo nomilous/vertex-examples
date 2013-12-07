@@ -9,9 +9,10 @@
 module.exports = (port, secret, name) ->
 
     #
-    # * /build.js script loaded first in html (see routes.view in basic_hub)
-    # 
-
+    # `require` calls made inside function because 
+    #  function.toString() is sent to the browser, 
+    #  surrounding scope will not be present there
+    #
 
     debug = require('debug') 'vertex-example'
     debug 'name %s', name

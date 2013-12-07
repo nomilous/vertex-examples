@@ -12,7 +12,7 @@ node-dev src/mice/mouse_hub.coffee | bunyan
 # browserConsole: require('debug').enable('vertex*')
 # 
 
-[http://localhost:3000/view?name=ClientOne](http://localhost:3000/view?name=ClientOne)
+[http://localhost:3000/mouse/view?name=ClientOne](http://localhost:3000/mouse/view?name=ClientOne)
 
 
 

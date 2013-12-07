@@ -15,7 +15,7 @@
   "devDependencies": {
     "vertex": "0.0.1",
     "vertex-client": "0.0.1",
-    "ipso": "0.0.16"
+    "ipso": "0.0.18"
   },
   "repository": "git@github.com:nomilous/vertex-examples.git"
 }

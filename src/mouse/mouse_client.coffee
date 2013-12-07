@@ -56,12 +56,12 @@ client.socket.on 'message', (payload) ->
     # temporary pending EventEmitter
     #
 
-    message = JSON.parse payload
+    # message = JSON.parse payload
 
-    if message.event is 'peer' then console.log client.peers
-    else
+    # if message.event is 'peer' then console.log client.peers
+    # else
 
-        console.log payload
+    #     console.log payload
 
 
 x = 0
@@ -83,7 +83,7 @@ infinity = ->
 
             event: 'mousemove'
             uuid: uuid
-            
+
             x: position.x + (radius.x * Math.cos x++ / 20)
             y: position.y + (radius.y * Math.sin y++ / 10)
 

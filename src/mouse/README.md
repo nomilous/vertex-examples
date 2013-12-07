@@ -27,4 +27,13 @@ http://localhost:3000/mouse/view?name=ClientOne
 DEBUG=vertex* NAME=ClientZero node-dev src/mouse/mouse_client.coffee
 
 
+
+NAME=one node-dev src/mouse/mouse_client.coffee &
+NAME=two node-dev src/mouse/mouse_client.coffee &
+NAME=thr node-dev src/mouse/mouse_client.coffee &
+NAME=fou node-dev src/mouse/mouse_client.coffee &
+
+ps aux | grep mouse_client.coffee | awk '{print $2}' | xargs kill
+
+
 ```

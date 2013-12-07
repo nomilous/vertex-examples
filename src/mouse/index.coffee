@@ -20,8 +20,10 @@ client = (port, secret, name) ->
 
     client.connect()
 
+
     dom = require 'dom'
     container = dom '.container'
+
 
     document.onmousemove = (e) -> 
 

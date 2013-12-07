@@ -1,3 +1,8 @@
+#
+# node client
+#
+
+
 debug  = require('debug') 'vertex-examples:basic_client'
 Client = require 'vertex-client'
 

@@ -22,7 +22,7 @@ routes =
         callback null,
             
             headers: 'Content-Type': 'text/javascript'
-            body: readFileSync "#{__dirname}/../../build/build.js"
+            body: readFileSync "#{__dirname}/../build/build.js"
 
 
     mouse: require('./mouse') port, secret

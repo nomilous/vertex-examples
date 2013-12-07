@@ -4,7 +4,7 @@
 # start vertex hub 
 #
 
-node-dev src/mice/mouse_hub.coffee | bunyan
+node-dev src/hub.coffee | bunyan
 
 
 #

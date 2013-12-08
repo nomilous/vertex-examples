@@ -77,9 +77,6 @@ module.exports.client = browserClient = (port, secret, name) ->
 
     dom = require 'dom'
 
-    console.log dom.toString()
-    
-
     container = dom('body').append('<div></div>')
 
     .css

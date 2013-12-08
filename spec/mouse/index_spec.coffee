@@ -1,5 +1,5 @@
 
-{ipso, tag, mock, def} = require 'ipso'
+{ipso, tag, mock, define} = require 'ipso'
 
 describe 'mouse', ipso (should) -> 
 
@@ -13,17 +13,25 @@ describe 'mouse', ipso (should) ->
             mouse: Mouse 3000, 'secret'
             VertexClient: require 'vertex-client'
 
-        #
-        # create requirable 'dom' (as module that exports function)
-        #
 
-        def dom: -> 
+        mock 'bodyElement' 
 
-            # return mock 'dom'
+        define
 
-            append: -> 
-                css: ->
-                    on: -> console.log arguments
+            #
+            # define / stub 'dom' module to return appropriate el mock 
+            #
+
+            dom: (selector) ->
+
+                switch selector
+
+                    when 'body' then get 'bodyElement'
+
+                                    #
+                                    # get() is defined on the scope of the 
+                                    # exporter that creates the stub module.
+                                    #
 
 
         socket = mock('socket').with
@@ -68,7 +76,7 @@ describe 'mouse', ipso (should) ->
 
     it 'enable testing here ( despite client-side-only components being required [ without running browser { or headless browser',
 
-        ipso (Mouse, VertexClient, vertexClient) -> 
+        ipso (Mouse, VertexClient, vertexClient, bodyElement) -> 
 
             VertexClient.does create: (config) -> 
 
@@ -81,6 +89,9 @@ describe 'mouse', ipso (should) ->
 
 
                 return vertexClient.does connect: -> 
+
+
+            bodyElement.does append: -> css: -> on: ->
 
 
             #

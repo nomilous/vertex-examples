@@ -15,7 +15,7 @@ module.exports = (port, secret) ->
                 body: "(#{
 
 
-                    client.toString()
+                    browserClient.toString()
 
 
                 }).call(self, '#{port}', '#{secret}', '#{opts.query.name}');"
@@ -55,7 +55,7 @@ module.exports = (port, secret) ->
 
 
 
-module.exports.client = client = (port, secret, name) ->
+module.exports.client = browserClient = (port, secret, name) ->
 
     #
     # `require` calls made inside function because 

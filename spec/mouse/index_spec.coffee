@@ -1,7 +1,7 @@
 
 {ipso, tag, mock} = require 'ipso'
 
-describe 'mouse', (should) -> 
+describe 'mouse', ipso (should) -> 
 
     before ipso -> 
 

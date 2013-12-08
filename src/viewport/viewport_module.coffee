@@ -48,4 +48,10 @@ module.exports.browserClient = (port, secret, name) ->
 
     client.connect()
 
-    alert 'okgood'
+    dom   = require 'dom'
+    three = require 'three'
+
+    console.log scene: three.Scene
+    console.log camera: three.Scene
+
+    try three()

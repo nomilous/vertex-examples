@@ -2,6 +2,8 @@
 
 #
 # start vertex hub 
+# 
+# (same server instance as mouse example)
 #
 
 node-dev src/hub.coffee | bunyan

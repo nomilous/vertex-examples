@@ -78,24 +78,28 @@ describe 'mouse', ipso (should) ->
 
 
 
-    it 'enable testing here ( despite client-side-only components being required [ without running browser { or headless browser',
+    it 'creates client and connects to the vertex hub with configured port, secret and name',
 
-        ipso (Mouse, VertexClient, vertexClient, body, container) -> 
+        ipso (Mouse, VertexClient, vertexClient) -> 
 
-            VertexClient.does create: (config) -> 
+            VertexClient.does create: (config) ->
 
                 config.should.eql 
 
-                    uuid: 'NAME'
-                    context: name: 'NAME'
-                    secret: 'SECRET'
-                    connect: uri: "ws://localhost:PORT"
+                    #
+                    # bug: not showing the json differer on fail
+                    #
+
+                    uuid: 'name'
+                    context: name: 'name'
+                    secret: 'secret'
+                    connect: uri: "ws://localhost:9999"
 
 
-                return vertexClient.does connect: -> 
+                return vertexClient.does connect: ->
 
 
-            Mouse.client 'PORT', 'SECRET', 'NAME'
+            Mouse.client 9999, 'secret', 'name'
 
 
     it 'appends container div into body that spans 100% and listens for mousemove', 

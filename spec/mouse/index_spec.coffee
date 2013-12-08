@@ -1,5 +1,5 @@
 
-{ipso, tag, mock} = require 'ipso'
+{ipso, tag, mock, def} = require 'ipso'
 
 describe 'mouse', ipso (should) -> 
 
@@ -13,6 +13,18 @@ describe 'mouse', ipso (should) ->
             mouse: Mouse 3000, 'secret'
             VertexClient: require 'vertex-client'
 
+        #
+        # create requirable 'dom' (as module that exports function)
+        #
+
+        def dom: -> 
+
+            # return mock 'dom'
+
+            append: -> 
+                css: ->
+                    on: -> console.log arguments
+
 
         socket = mock('socket').with
 
@@ -24,8 +36,6 @@ describe 'mouse', ipso (should) ->
 
             socket: socket
             connect: -> 
-            
-
 
 
     it 'generates self calling controller', 
@@ -77,9 +87,9 @@ describe 'mouse', ipso (should) ->
             # problems to solve
             # -----------------
             # 
-            # * Error: Cannot find module 'dom'   (component only)
-            # * it exports a function             (difficult to stub)
-            #
+            # DONE: * Error: Cannot find module 'dom'   (component only)
+            # DONE: * it exports a function             (difficult to stub)
+            # * it can't return an injectable mock
 
             Mouse.client 'PORT', 'SECRET', 'NAME'
 

@@ -73,11 +73,11 @@ module.exports.client = browserClient = (port, secret, name) ->
             uri: "ws://localhost:#{port}"
             # interval: 2000
 
-    # return
     client.connect()
 
-    # return
     dom = require 'dom'
+
+    console.log dom.toString()
     
 
     container = dom('body').append('<div></div>')

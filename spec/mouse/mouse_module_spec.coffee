@@ -34,7 +34,7 @@ describe 'mouse', ipso (should) ->
         define dom: (selector) ->
             switch selector 
                 when 'body' then return get 'body'
-            
+                when '.peer.UUID' then return get 'peer'
 
 
     beforeEach ipso (VertexClient, vertexClient) -> 
@@ -189,6 +189,31 @@ describe 'mouse', ipso (should) ->
                 str.should.equal '{"event":"broadcast","data":{"event":"mousemove","x":1,"y":2}}'
 
             MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
+
+
+    it 'positions peer elements according to received mousemove ments', 
+
+        ipso (MouseModule, socket, peer) -> 
+
+            socket.does on: (pub, sub) -> 
+
+                if pub is 'message' then sub JSON.stringify
+
+                    event: 'mousemove'
+                    uuid: 'UUID'
+                    x: 1
+                    y: 2
+
+            peer.does css: (style) -> 
+
+                style.should.eql
+
+                    top: '2px'
+                    left: '1px'
+
+
+            MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
+
 
 
 

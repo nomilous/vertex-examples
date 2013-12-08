@@ -3,77 +3,51 @@
 
 describe 'mouse', ipso (should) -> 
 
-    before ipso -> 
-
-        Mouse = require '../../lib/mouse'
+    before ipso (MouseModule) -> 
 
         tag
 
-            Mouse: Mouse
-            mouse: Mouse 3000, 'secret'
+            instance: MouseModule.create 3000, 'secret'
             VertexClient: require 'vertex-client'
 
 
+        mock('vertexClient').with
+            connect: -> 
+            socket: mock('socket').with
+                send: -> 
+                on: ->
+
+        mock('body').with append: -> container
+
         container = mock('container').with 
-
             css: -> return container # chainable
-            on: -> return container
-
+            on: -> container
 
         peer = mock('peer').with
-
-            addClass: -> peer # chainable
+            addClass: -> peer
             css: -> peer 
 
+        #
+        # define / stub 'dom' module to return appropriate el mock 
+        #
 
-        mock('body').with 
-
-            append: -> return container
-
-
-        define
-
-            #
-            # define / stub 'dom' module to return appropriate el mock 
-            #
-
-            dom: (selector) ->
-
-                switch selector 
-
-                    when 'body' then return get 'body'
-                
-
-
-
-        socket = mock('socket').with
-
-            send: -> 
-            on: ->
-
-
-        mock('vertexClient').with 
-
-            socket: socket
-            connect: -> 
+        define dom: (selector) ->
+            switch selector 
+                when 'body' then return get 'body'
+            
 
 
     beforeEach ipso (VertexClient, vertexClient) -> 
 
-        #
-        # TODO (maybe): create .with() at injection
-        #
-        # VertexClient.with create: -> vertexClient
-        # 
-
         VertexClient.create = -> vertexClient
 
 
-    it 'generates self calling controller', 
 
-        ipso (mouse) -> 
+    it 'generates a self calling controller', 
 
-            mouse.controller
+        ipso (instance) -> 
+
+            instance.controller
 
                 query: name: 'NAME'
                 (err, result) ->
@@ -83,11 +57,12 @@ describe 'mouse', ipso (should) ->
                     result.body.should.match /\).call\(self, '3000', 'secret', 'NAME'\);/
 
 
-    it 'generates view that calls the controller with name query', 
 
-        ipso (mouse) -> 
+    it 'generates a view that calls the controller with name query', 
 
-            mouse.view
+        ipso (instance) -> 
+
+            instance.view
 
                 query: name: 'NAME'
                 (err, result) ->
@@ -97,9 +72,10 @@ describe 'mouse', ipso (should) ->
 
 
 
+
     it 'creates vertex client and connects to the vertex hub with configured port, secret and name',
 
-        ipso (Mouse, VertexClient, vertexClient) -> 
+        ipso (MouseModule, VertexClient, vertexClient) -> 
 
             VertexClient.does create: (config) ->
 
@@ -118,12 +94,13 @@ describe 'mouse', ipso (should) ->
                 return vertexClient.does connect: ->
 
 
-            Mouse.client 9999, 'secret', 'name'
+            MouseModule.browserClient 9999, 'secret', 'name'
+
 
 
     it 'appends container div into body that spans 100% and listens for mousemove', 
 
-        ipso (Mouse, body, container) -> 
+        ipso (MouseModule, body, container) -> 
 
             body.does 
 
@@ -150,9 +127,9 @@ describe 'mouse', ipso (should) ->
 
                     pub.should.equal 'mousemove'
 
-                
 
-            Mouse.client 'PORT', 'SECRET', 'NAME'
+            MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
+
 
 
     it 'inserts all listed peer elements into container on event "peer" with action "list"'
@@ -160,7 +137,7 @@ describe 'mouse', ipso (should) ->
 
     it 'appends peer element into container on event "peer" with action "join"', 
 
-        ipso (Mouse, socket, container, peer) -> 
+        ipso (MouseModule, socket, container, peer) -> 
 
             socket.does on: (pub, sub) ->
 
@@ -196,6 +173,6 @@ describe 'mouse', ipso (should) ->
                                 position: 'absolute'
 
 
-            Mouse.client 'PORT', 'SECRET', 'NAME'
+            MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
 
 

@@ -1,5 +1,5 @@
 
-module.exports = (port, secret) ->
+module.exports.create = (port, secret) ->
 
     mouse = 
 
@@ -15,7 +15,7 @@ module.exports = (port, secret) ->
                 body: "(#{
 
 
-                    browserClient.toString()
+                    module.exports.browserClient.toString()
 
 
                 }).call(self, '#{port}', '#{secret}', '#{opts.query.name}');"
@@ -55,7 +55,7 @@ module.exports = (port, secret) ->
 
 
 
-module.exports.client = browserClient = (port, secret, name) ->
+module.exports.browserClient = (port, secret, name) ->
 
     #
     # `require` calls made inside function because 

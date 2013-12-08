@@ -25,7 +25,8 @@ routes =
             body: readFileSync "#{__dirname}/../build/build.js"
 
 
-    mouse: require('./mouse') port, secret
+    mouse:    require('./mouse/mouse_module').create port, secret
+    viewport: require('./viewport/viewport_module').create port, secret
 
 
 #

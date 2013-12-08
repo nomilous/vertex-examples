@@ -78,7 +78,7 @@ describe 'mouse', ipso (should) ->
 
 
 
-    it 'creates client and connects to the vertex hub with configured port, secret and name',
+    it 'creates vertex client and connects to the vertex hub with configured port, secret and name',
 
         ipso (Mouse, VertexClient, vertexClient) -> 
 

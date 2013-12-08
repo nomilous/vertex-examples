@@ -129,16 +129,19 @@ module.exports.client = browserClient = (port, secret, name) ->
 
                     when 'join', 'resume'
 
-                        peer = insert uuid unless peer = container.find( selector ).els[0]
+                        unless peer = container.find( selector ).els[0]
 
-                        dom( peer ).css
+                            return insert uuid
+
+                        
+                        dom( peer ).css 
 
                             visibility: 'visible'
 
 
                     when 'depart'
 
-                        dom( selector ).css
+                        dom( selector ).css 
 
                             visibility: 'hidden'
 

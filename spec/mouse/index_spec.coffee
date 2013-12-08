@@ -160,7 +160,7 @@ describe 'mouse', ipso (should) ->
 
     it 'appends peer element into container on event "peer" with action "join"', 
 
-        ipso (facto, Mouse, socket, container, peer) -> 
+        ipso (Mouse, socket, container, peer) -> 
 
             socket.does on: (pub, sub) ->
 
@@ -185,26 +185,15 @@ describe 'mouse', ipso (should) ->
                 append: (html) ->
 
                     html.should.equal '<div>UUID</div>'
-                    
-                    # html.should.equal '<div>UUID</   DIV   >'
-                                            #
-                                            # bug: this Assertion exception is getting lost somewhere
-                                            #
 
                     return peer.does
 
                         _css: (style) -> 
 
-                            style.should.eql 
+                            style.should.eql
 
                                 visibility: 'visible'
                                 position: 'absolute'
-
-                                # position: 'abso LUTE'  
-                                            #
-                                            # bug: this Assertion exception is also getting lost somewhere
-                                            #
-                            facto()
 
 
             Mouse.client 'PORT', 'SECRET', 'NAME'

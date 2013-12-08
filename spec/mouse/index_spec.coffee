@@ -14,7 +14,15 @@ describe 'mouse', ipso (should) ->
             VertexClient: require 'vertex-client'
 
 
-        mock 'bodyElement' 
+        container = mock('container').with 
+
+            css: -> return container # chainable
+            on: -> return container
+
+        mock('body').with 
+
+            append: -> return container
+
 
         define
 
@@ -24,14 +32,10 @@ describe 'mouse', ipso (should) ->
 
             dom: (selector) ->
 
-                switch selector
+                switch selector 
 
-                    when 'body' then get 'bodyElement'
+                    when 'body' then get 'body'
 
-                                    #
-                                    # get() is defined on the scope of the 
-                                    # exporter that creates the stub module.
-                                    #
 
 
         socket = mock('socket').with
@@ -76,7 +80,7 @@ describe 'mouse', ipso (should) ->
 
     it 'enable testing here ( despite client-side-only components being required [ without running browser { or headless browser',
 
-        ipso (Mouse, VertexClient, vertexClient, bodyElement) -> 
+        ipso (Mouse, VertexClient, vertexClient, body, container) -> 
 
             VertexClient.does create: (config) -> 
 
@@ -91,19 +95,40 @@ describe 'mouse', ipso (should) ->
                 return vertexClient.does connect: -> 
 
 
-            bodyElement.does append: -> css: -> on: ->
-
-
-            #
-            # problems to solve
-            # -----------------
-            # 
-            # DONE: * Error: Cannot find module 'dom'   (component only)
-            # DONE: * it exports a function             (difficult to stub)
-            # * it can't return an injectable mock
-
             Mouse.client 'PORT', 'SECRET', 'NAME'
 
 
+    it 'appends container div into body that spans 100% and listens for mousemove', 
+
+        ipso (Mouse, body, container) -> 
+
+            body.does 
+
+                append: (html) -> 
+
+                    html.should.equal '<div></div>'
+                    return container
+
+
+            container.does
+
+                #
+                # test with spies (to allow original mock to sill do the chaining)
+                #
+
+                _css: (style) -> 
+
+                    style.should.eql
+
+                        width: '100%'
+                        height: '100%'
+
+                _on: (pub, sub) ->
+
+                    pub.should.equal 'mousemove'
+
+                
+
+            Mouse.client 'PORT', 'SECRET', 'NAME'
 
 

@@ -19,6 +19,13 @@ describe 'mouse', ipso (should) ->
             css: -> return container # chainable
             on: -> return container
 
+
+        peer = mock('peer').with
+
+            addClass: -> peer # chainable
+            css: -> peer 
+
+
         mock('body').with 
 
             append: -> return container
@@ -34,7 +41,8 @@ describe 'mouse', ipso (should) ->
 
                 switch selector 
 
-                    when 'body' then get 'body'
+                    when 'body' then return get 'body'
+                
 
 
 
@@ -48,6 +56,17 @@ describe 'mouse', ipso (should) ->
 
             socket: socket
             connect: -> 
+
+
+    beforeEach ipso (VertexClient, vertexClient) -> 
+
+        #
+        # TODO (maybe): create .with() at injection
+        #
+        # VertexClient.with create: -> vertexClient
+        # 
+
+        VertexClient.create = -> vertexClient
 
 
     it 'generates self calling controller', 
@@ -132,6 +151,61 @@ describe 'mouse', ipso (should) ->
                     pub.should.equal 'mousemove'
 
                 
+
+            Mouse.client 'PORT', 'SECRET', 'NAME'
+
+
+    it 'inserts all listed peer elements into container on event "peer" with action "list"'
+
+
+    it 'appends peer element into container on event "peer" with action "join"', 
+
+        ipso (facto, Mouse, socket, container, peer) -> 
+
+            socket.does on: (pub, sub) ->
+
+                if pub is 'message' then sub JSON.stringify 
+
+                    event: 'peer'
+                    action: 'join'
+                    uuid: 'UUID'
+
+
+            container.does
+
+                find: (selector) ->
+
+                    #
+                    # attempts to locate peer element before appending and mocks none
+                    #
+
+                    selector.should.equal '.peer.UUID'
+                    return els: []
+
+                append: (html) ->
+
+                    html.should.equal '<div>UUID</div>'
+                    
+                    # html.should.equal '<div>UUID</   DIV   >'
+                                            #
+                                            # bug: this Assertion exception is getting lost somewhere
+                                            #
+
+                    return peer.does
+
+                        _css: (style) -> 
+
+                            style.should.eql 
+
+                                visibility: 'visible'
+                                position: 'absolute'
+
+                                # position: 'abso LUTE'  
+                                            #
+                                            # bug: this Assertion exception is also getting lost somewhere
+                                            #
+                            facto()
+
 
             Mouse.client 'PORT', 'SECRET', 'NAME'
 

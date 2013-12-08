@@ -176,3 +176,19 @@ describe 'mouse', ipso (should) ->
             MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
 
 
+    it 'broadcasts mousemove events', 
+
+        ipso (MouseModule, socket, container) -> 
+
+            container.does on: (pub, sub) -> 
+
+                if pub is 'mousemove' then sub x: 1, y: 2
+
+            socket.does send: (str) -> 
+
+                str.should.equal '{"event":"broadcast","data":{"event":"mousemove","x":1,"y":2}}'
+
+            MouseModule.browserClient 'PORT', 'SECRET', 'NAME'
+
+
+

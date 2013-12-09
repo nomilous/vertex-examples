@@ -31,7 +31,7 @@ describe 'mouse', ipso (should) ->
         # define / stub 'dom' module to return appropriate el mock 
         #
 
-        define dom: (selector) ->
+        define $dom: (selector) ->
             switch selector 
                 when 'body' then return get 'body'
                 when '.peer.UUID' then return get 'peer'

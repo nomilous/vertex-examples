@@ -8,24 +8,12 @@ describe 'viewport', ->
 
         define
 
-            dom: (select) -> 
+            $dom: (select) -> 
 
             three: -> 
-
-                console.log """
-
-                    #
-                    # TODO: define to support object (hash/literal) 
-                    #       definition, something like:
-                    #
-                    #       define 
-                    #          three:
-                    #             Scene: mock 'scene'
-                    #             Camera: mock 'camera'
-                    # 
-                    # 
-
-                """
+                Camera: mock 'camera'
+                Scene:  mock 'scene'
+                
 
 
     beforeEach ipso (Uplink) -> Uplink.does create: -> connect: ->

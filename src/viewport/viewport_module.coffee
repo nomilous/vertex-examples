@@ -51,7 +51,9 @@ module.exports.browserClient = (port, secret, name) ->
     dom   = require 'dom'
     three = require 'three'
 
+    console.log dom: dom.toString()
+
     console.log scene: three.Scene
     console.log camera: three.Scene
 
-    try three()
+

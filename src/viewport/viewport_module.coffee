@@ -49,11 +49,49 @@ module.exports.browserClient = (port, secret, name) ->
     client.connect()
 
     dom   = require 'dom'
-    three = require 'three'
+    THREE = require 'three'
 
-    console.log dom: dom.toString()
+    container = dom('body').append '<div></div>'
 
-    console.log scene: three.Scene
-    console.log camera: three.Scene
 
+    #
+    # http://www.aerotwist.com/tutorials/getting-started-with-three-js/
+    # 
+
+    width    = 400
+    height   = 300
+    fov      = 45
+    aspect   = width / height
+    near     = 0.1
+    far      = 1000
+    renderer = new THREE.WebGLRenderer
+    camera   = new THREE.PerspectiveCamera fov, aspect, near, far
+    scene    = new THREE.Scene
+
+    scene.add camera
+    camera.position.z = 300
+    renderer.setSize width, height
+    renderer.setClearColor 0x222222, 1
+    
+
+    container.append renderer.domElement
+
+
+    radius          = 50
+    segments        = 16
+    rings           = 16
+    sphereGeometry  = new THREE.SphereGeometry radius, segments, rings
+    sphereMaterial  = new THREE.MeshLambertMaterial color: 0xCC0D0E
+    sphere          = new THREE.Mesh sphereGeometry, sphereMaterial
+    scene.add sphere 
+
+
+    pointLight = new THREE.PointLight 0xFFFFFF
+    pointLight.position.x = 10
+    pointLight.position.y = 50
+    pointLight.position.z = 130
+    scene.add pointLight 
+
+
+    renderer.render scene, camera
 

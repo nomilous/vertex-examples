@@ -8,11 +8,27 @@ describe 'viewport', ->
 
         define
 
-            $dom: (select) -> 
+            $dom: (select) -> append: -> append: ->
 
             three: -> 
-                Camera: mock 'camera'
-                Scene:  mock 'scene'
+
+                #
+                # TODO: sensible way to mock classes
+                #
+
+                WebGLRenderer: class
+                    setSize: ->
+                    setClearColor: ->
+                    render: ->
+                PerspectiveCamera: class
+                    position: z: 0
+                Scene:  class
+                    add: ->
+                SphereGeometry: class
+                MeshLambertMaterial: class
+                Mesh: class
+                PointLight: class
+                    position: x: 0, y: 0, z: 0
                 
 
 

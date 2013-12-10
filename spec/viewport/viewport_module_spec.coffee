@@ -44,7 +44,7 @@ describe 'viewport', ->
                 setSize: (width, height) -> 
 
                     width.should.equal 400
-                    height.should.equal 'FAIL'
+                    height.should.equal 300
 
                 setClearColor: (colour) -> 
 

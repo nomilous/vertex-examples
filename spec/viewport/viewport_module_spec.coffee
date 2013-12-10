@@ -12,15 +12,10 @@ describe 'viewport', ->
 
             three: -> 
 
-                #
-                # TODO: sensible way to mock classes
-                #
-
                 WebGLRenderer: Mock('renderer').with
 
-                    # setSize: ->       # TODO: understand why these prevents
-                                        #       the expectations below from
-                    # setClearColor: -> #       from functioning properly.
+                    setSize: ->                
+                    setClearColor: ->
                     render: ->
 
                 PerspectiveCamera: class
@@ -49,7 +44,7 @@ describe 'viewport', ->
                 setSize: (width, height) -> 
 
                     width.should.equal 400
-                    height.should.equal 300
+                    height.should.equal 'FAIL'
 
                 setClearColor: (colour) -> 
 

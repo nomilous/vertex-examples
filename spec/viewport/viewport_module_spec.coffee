@@ -13,13 +13,13 @@ describe 'viewport', ->
             three: -> 
 
                 WebGLRenderer: Mock('renderer').with
-
                     setSize: ->                
                     setClearColor: ->
                     render: ->
 
-                PerspectiveCamera: class
+                PerspectiveCamera: Mock('camera').with
                     position: z: 0
+                    
                 Scene:  class
                     add: ->
                 SphereGeometry: class
@@ -30,24 +30,42 @@ describe 'viewport', ->
                 
 
 
-    beforeEach ipso (Uplink) -> Uplink.does create: -> connect: ->
+    before ipso (Uplink) -> Uplink.does create: -> connect: ->
 
 
 
+    it 'creates a camera instance with specified fieldOfView, aspectRatio and clipping planes',
 
-    it 'creates a renderer of specified size and background colour', 
+        ipso (ViewportModule, camera, should) -> 
 
-        ipso (ViewportModule, renderer) -> 
+            camera.does 
+
+                constructor: (fov, aspect, near, far) -> 
+
+                    @moo = -> 'just checking'
+
+                    fov.should.equal 45
+                    aspect.should.equal 400 / 300
+                    near.should.equal 0.1
+                    far.should.equal 1000
+
+
+
+            ViewportModule.browserClient 'PORT', 'SECRET', 'NAME'
+
+
+
+    xit 'creates a renderer of specified size and background colour', 
+
+        ipso (ViewportModule, renderer, should) -> 
 
             renderer.does
 
                 setSize: (width, height) -> 
-
                     width.should.equal 400
                     height.should.equal 300
 
                 setClearColor: (colour) -> 
-
                     colour.should.equal 0x222222
 
 

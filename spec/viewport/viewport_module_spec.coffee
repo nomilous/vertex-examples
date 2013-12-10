@@ -38,12 +38,9 @@ describe 'viewport', ->
 
         ipso (ViewportModule, camera, should) -> 
 
-            camera.does 
+            camera.does
 
                 constructor: (fov, aspect, near, far) -> 
-
-                    @moo = -> 'just checking'
-
                     fov.should.equal 45
                     aspect.should.equal 400 / 300
                     near.should.equal 0.1
@@ -55,7 +52,7 @@ describe 'viewport', ->
 
 
 
-    xit 'creates a renderer of specified size and background colour', 
+    it 'creates a renderer of specified size and background colour', 
 
         ipso (ViewportModule, renderer, should) -> 
 

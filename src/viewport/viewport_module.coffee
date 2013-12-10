@@ -66,9 +66,6 @@ module.exports.browserClient = (port, secret, name) ->
     far      = 1000
     renderer = new THREE.WebGLRenderer
     camera   = new THREE.PerspectiveCamera fov, aspect, near, far
-
-    console.log camera.moo()
-
     scene    = new THREE.Scene
 
     scene.add camera

@@ -26,5 +26,6 @@ git seed pull
 Examples
 --------
 
-[mice](./src/mice) broadcasts mouse position updates to all browsers on the hub
+[mouse](./src/mouse) broadcasts mouse position updates to all browsers on the hub
+[viewport](./src/viewport) basic three.js example
 

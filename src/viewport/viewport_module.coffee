@@ -90,8 +90,17 @@ module.exports.browserClient = (port, secret, name) ->
     pointLight.position.x = 10
     pointLight.position.y = 50
     pointLight.position.z = 130
-    scene.add pointLight 
+    scene.add pointLight
 
+    x = 0
 
-    renderer.render scene, camera
+    animate = ->
+
+        try
+            requestAnimationFrame animate
+            sphere.position.x = 100 * Math.cos x++ / 10
+            sphere.position.y = 50 * Math.sin x / 5
+            renderer.render scene, camera
+
+    animate()
 

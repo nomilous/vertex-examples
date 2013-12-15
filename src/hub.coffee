@@ -37,7 +37,7 @@ routes['build.js'].$www = {}
 
 
 
-require('vertex')
+require('vertex').create
     
     secret: secret
     # secret: 'wrong'

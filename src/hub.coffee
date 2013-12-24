@@ -39,8 +39,8 @@ routes['build.js'].$www = {}
 
 require('vertex').create
     
+    secret: 'wrong'
     secret: secret
-    # secret: 'wrong'
     listen: 
         port: port
 
@@ -50,9 +50,3 @@ require('vertex').create
         listen: port: 3000
         allowRoot: true # false
         root: routes
-
-    log: 
-
-        level: 'debug'
-
-

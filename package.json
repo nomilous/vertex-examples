@@ -13,7 +13,7 @@
     "debug": "~0.7.4"
   },
   "devDependencies": {
-    "vertex": "0.0.3",
+    "vertex": "0.0.4",
     "vertex-client": "0.0.1",
     "ipso": "0.0.18"
   },

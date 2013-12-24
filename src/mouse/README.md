@@ -7,13 +7,21 @@
 node-dev src/hub.coffee
 
 
-#
-# clients browser / node
+
 #
 # browserConsole: require('debug').enable('vertex*')
+#                 require('debug').disable('vertex*')  # refresh
 # 
 
 http://localhost:3000/mouse/view?name=ClientOne
+
+# second browser window
+
+http://localhost:3000/mouse/view?name=ClientTwo
+
+# and from the console
+
+DEBUG=vertex* NAME=ClientZero node-dev src/mouse/mouse_client.coffee
 
 
 #
@@ -22,18 +30,6 @@ http://localhost:3000/mouse/view?name=ClientOne
 #      does not occur if separate window
 #      chrome (other browsers unknown)
 #
-
-
-DEBUG=vertex* NAME=ClientZero node-dev src/mouse/mouse_client.coffee
-
-
-
-NAME=one node-dev src/mouse/mouse_client.coffee &
-NAME=two node-dev src/mouse/mouse_client.coffee &
-NAME=thr node-dev src/mouse/mouse_client.coffee &
-NAME=fou node-dev src/mouse/mouse_client.coffee &
-
-ps aux | grep mouse_client.coffee | awk '{print $2}' | xargs kill
 
 
 ```

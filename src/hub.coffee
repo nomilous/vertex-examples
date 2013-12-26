@@ -49,4 +49,4 @@ require('vertex').create
 
         listen: port: 3000
         allowRoot: true # false
-        root: routes
+        routes: routes

@@ -87,7 +87,7 @@ describe 'Describe Vertex', ->
 
                 www: 
                     listen: port: 3002
-                    root: routes
+                    routes: routes
 
                 log: level: 'fatal'
 
